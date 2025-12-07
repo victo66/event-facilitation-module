@@ -6,71 +6,130 @@
 ## 1. Introduction
 This repository presents the complete design documentation for an **Event Facilitation Module** intended for use in educational institutions.
 
-The module supports the planning, approval, coordination, and analysis of events such as workshops, seminars, cultural programs, competitions, and PTA meetings.
+The module supports the planning, approval, coordination, communication, and analysis of events such as workshops, seminars, PTA meetings, cultural programs, academic competitions, and other institutional activities.
 
 ---
 
 ## 2. Deliverables Included
-This project covers the following major components:
+This project includes the following components:
 
-- ✔ Data Model (ER Diagram + explanation)  
-- ✔ Workflows (PNG diagrams + explanations)  
-- ✔ User Roles  
-- ✔ Module Architecture (PNG diagram + explanation)
+- ✔ **Data Model (ER Diagram + Explanation)**  
+- ✔ **Workflows (PNG diagrams + process descriptions)**  
+- ✔ **User Roles & Responsibilities**  
+- ✔ **Module Architecture (PNG diagram + Explanation)**  
 
-All diagrams are available in the `/diagrams/` directory.
+All diagrams are located inside the **`/diagrams/`** folder.
 
 ---
 
 ## 3. Problem Statement
-Institutions frequently manage multiple events, often leading to:
+Most institutions handle multiple events simultaneously, often leading to:
 
 - Scheduling conflicts  
-- Poor communication  
-- Tracking difficulty  
-- Resource mismanagement  
-- Limited feedback collection  
+- Manual approval delays  
+- Fragmented communication  
+- Difficulty in tracking participation  
+- Poor resource & venue utilization  
+- No structured feedback mechanism  
 
-A dedicated Event Facilitation Module solves these issues through organized digital processes.
+A dedicated digital system is required to streamline the entire event lifecycle.
 
 ---
 
 ## 4. Objectives of the Module
-The module is designed to:
+The Event Facilitation Module aims to:
 
-- Digitize event proposal and approval processes  
-- Enable conflict-free venue & resource allocation  
-- Provide event visibility to students & parents  
-- Enable structured registration and tracking  
-- Automate notifications and reminders  
-- Support post-event feedback collection  
+- Digitize the event proposal and approval process  
+- Ensure conflict-free scheduling  
+- Manage venues and resources efficiently  
+- Provide visibility of events to students and parents  
+- Automate notifications & reminders  
+- Support structured registration and feedback collection  
+- Improve administrative decision-making with reports  
 
 ---
 
 ## 5. User Roles & Responsibilities
 
-### **Admin**
-- Approve or reject event proposals  
-- Allocate venues and resources  
-- Manage event schedules  
-- View feedback and participation reports  
+The system supports multiple user types, each with specific permissions and responsibilities.
 
-### **Teacher**
-- Submit event proposals  
-- Provide detailed event information  
-- Coordinate event execution  
-- Manage participants  
+---
 
-### **Student**
-- Explore upcoming events  
-- Register and manage participation  
-- Receive reminders  
-- Submit feedback  
+### 👑 **Admin (Superuser / Event Controller)**  
+Admins are responsible for overall event governance and system supervision.
 
-### **Parent**
-- Receive event alerts  
-- View relevant event details  
-- Submit feedback  
+#### Responsibilities:
+- Review, approve, or reject event proposals  
+- Detect & resolve schedule or venue conflicts  
+- Oversee resource allocation and procurement  
+- Assign teachers as event coordinators  
+- Monitor student registrations and participation  
+- Manage user access roles when required  
+- Access feedback summaries and analytics reports  
+- Ensure policy compliance and event quality  
+
+---
+
+### 👨‍🏫 **Teacher (Event Proposer / Coordinator)**  
+Teachers act as event creators and coordinators.
+
+#### Responsibilities:
+- Create detailed event proposals (title, venue, date, resources)  
+- Edit and resubmit proposals based on admin feedback  
+- Coordinate event logistics during execution  
+- Manage student participants  
+- Upload supporting event materials when required  
+- Review feedback for future improvement  
+- Act as event coordinators for assigned events  
+
+---
+
+### 🎓 **Student (Participant / Attendee)**  
+Students interact with the module mainly as attendees.
+
+#### Responsibilities:
+- View upcoming approved events  
+- Register or unregister for events (based on capacity)  
+- Receive event reminders and updates  
+- Access event details & instructions  
+- Submit feedback after participating  
+- Track registration history  
+
+---
+
+### 👨‍👩‍👧 **Parent (Guardian Viewer / Notification Receiver)**  
+Parents remain informed about events relevant to their children.
+
+#### Responsibilities:
+- View student-related events (PTA meetings, academic programs)  
+- Receive event notifications  
+- Provide optional feedback  
+- Track child's participation in events  
+
+---
+
+### 🧑‍✈️ **Event Coordinator (Assigned Role)**  
+Event coordinators support event execution.
+
+#### Responsibilities:
+- Ensure venue readiness and resource setup  
+- Communicate with support staff and teachers  
+- Monitor event logistics closely  
+- Manage on-the-day instructions and flow  
+- Assist with attendance and reporting  
+
+---
+
+### ⚙️ **System Services (Automated Actions)**  
+
+#### Responsibilities:
+- Check venue & resource availability  
+- Trigger multi-channel notifications (Email, SMS, In-app)  
+- Maintain authentication and session security  
+- Store and organize feedback submissions  
+- Auto-update event status (e.g., Completed)  
+- Generate event analytics & dashboards  
+- Maintain audit logs of activities  
 
 ---
 
@@ -78,98 +137,103 @@ The module is designed to:
 
 ### 📌 Diagram: `/diagrams/er_diagram.png`
 
-### 🔍 Explanation
-The data model consists of multiple entities:
+### 🔍 Explanation  
+The data model includes:
 
-- **Events** – Event details, schedule, and organizing department  
-- **Users** – Admins, Teachers, Students, Parents  
-- **Venues** – Rooms or halls for events  
-- **Departments** – Event-organizing academic units  
-- **Participants** – Student registrations  
-- **Resources** – Equipment or materials required  
-- **EventResources** – Mapping of resources to events  
-- **EventCoordinators** – Teachers assigned as coordinators  
-- **Notifications** – System-triggered alerts  
-- **Feedback** – Post-event responses  
+- **Events** – Title, schedule, venue, organizer  
+- **Users** – Admin, Teacher, Student, Parent  
+- **Venues** – Rooms, halls, auditoriums  
+- **Departments** – Academic units organizing events  
+- **Participants** – Students registered for events  
+- **Resources** – Equipment & materials  
+- **EventResources** – Mapping resources to events  
+- **EventCoordinators** – Assigned teacher coordinators  
+- **Notifications** – Alerts triggered by system  
+- **Feedback** – Post-event participant responses  
 
-This structure supports scalable and flexible event management.
+This ER model supports flexible and scalable event management.
 
 ---
 
-## 7. Workflows (PNG Diagrams + Explanations)
+## 7. Workflows (PNG Diagrams + Descriptions)
 
 ### **7.1 Event Creation & Approval Workflow**  
 **File:** `event_creation_workflow.png`  
-**Description:** Teacher proposes an event → system stores as Pending → admin verifies conflicts/resources → approves or rejects → notifications sent.
+Teacher proposes event → system validates → admin checks conflicts/resources → approves or requests changes → notifications sent.
 
 ---
 
 ### **7.2 Venue & Resource Allocation Workflow**  
 **File:** `venue_resource_workflow.png`  
-**Description:** System checks venue availability and resource requirements before confirming allocation.
+System checks venue conflicts → validates resources → logs allocation or suggests alternatives.
 
 ---
 
 ### **7.3 Student Registration Workflow**  
 **File:** `student_registration_workflow.png`  
-**Description:** Students view events → register → system validates capacity → sends confirmation.
+Students register → system checks capacity → provides confirmation or waitlisting.
 
 ---
 
-### **7.4 Notifications Workflow**  
+### **7.4 Notification Workflow**  
 **File:** `notification_workflow.png`  
-**Description:** Notifications triggered on approvals, registrations, reminders, and feedback requests.
+Notifications triggered at stages: approval, registration, reminders, feedback requests.
 
 ---
 
 ### **7.5 Feedback Collection Workflow**  
 **File:** `feedback_workflow.png`  
-**Description:** After event completion, feedback links are sent → data saved → used for improvement.
+System sends feedback form → students submit → system aggregates → admin reviews.
 
 ---
 
 ## 8. Module Architecture (PNG + Explanation)
 
-### 📌 Diagram: `architecture_diagram.png`
+### 📌 Diagram: `/diagrams/architecture_diagram.png`
 
-### 🔍 Explanation
-The system architecture is divided into four layers:
+### 🔍 Explanation  
+The architecture contains four main layers:
 
 ### **1. Frontend Layer**
-- Interfaces for Admin, Teacher, Student, Parent  
-- Event calendar & dashboards  
+- Admin dashboard  
+- Teacher portal  
+- Student & parent portals  
+- Event calendar UI  
 
 ### **2. Backend Services**
-- Event management logic  
-- User authentication & authorization  
-- Venue & resource allocation engine  
-- Notification service  
-- Feedback management  
+- Event API  
+- User Authentication  
+- Venue & Resource Manager  
+- Notification Engine  
+- Feedback & Reporting Module  
 
 ### **3. Database Layer**
-Stores structured data for events, users, registrations, feedback, and notifications.
+- Central EventDB (Events, Users, Resources, Feedback, Registrations)
 
-### **4. Notification Layer**
-Handles emails, reminders, and post-event requests.
+### **4. External Integrations**
+- Email / SMS Gateway  
+- BI Tools (Dashboards/Analytics)
 
 ---
 
 ## 9. Repository Structure
 
+```
 event-facilitation-module/
 │── README.md
 │── diagrams/
-│ ├── er_diagram.png
-│ ├── event_creation_workflow.png
-│ ├── venue_resource_workflow.png
-│ ├── student_registration_workflow.png
-│ ├── notification_workflow.png
-│ └── feedback_workflow.png
-
+│      ├── er_diagram.png
+│      ├── event_creation_workflow.png
+│      ├── venue_resource_workflow.png
+│      ├── student_registration_workflow.png
+│      ├── notification_workflow.png
+│      ├── feedback_workflow.png
+│      └── architecture_diagram.png
+```
+`
 
 ---
 
 ## 10. Conclusion
-This documentation provides a complete overview of the Event Facilitation Module, covering its workflows, data architecture, and user interactions.  
-It serves as a clear and organized reference for understanding the internal design of the system.
+This documentation provides a complete overview of the **Event Facilitation Module**, including workflows, architecture, data model, and role-based responsibilities. It serves as a clear reference for understanding and implementing an efficient event management system in educational environments.
 
